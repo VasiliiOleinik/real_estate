@@ -79,8 +79,8 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DB_URL'] %>
-  hotst: <%= ENV['SECRET_HOST'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  host: <%= ENV['SECRET_HOST'] %>
   database: <%= ENV['DB_NAME'] %>
   username: <%= ENV["DB_USER"] %>
   password: <%= ENV["DB_PASSWORD"] %>
