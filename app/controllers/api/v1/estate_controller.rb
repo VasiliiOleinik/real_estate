@@ -27,12 +27,31 @@ class Api::V1::EstateController < ApplicationController
 
     private
       def estate_params
-        estate_params.require(:estate).permit([
+        params.require(:estate).permit([
           :title,
-          :price,
+          :property_type,
+          :property_rooms,
+          :estate_status,
           :country,
           :region,
-          :description
+          :location_details,
+          :price,
+          :extra,
+          :building_type,
+          :energy_level,
+          :media_contains,
+          :ownership,
+          :floor,
+          :usefull_area,
+          :listing_status,
+          :description,
+          :availability,
+          :author,
+          infrastructure: {},
+          extra: {},
+          media_contains: [],
+          listing_status: {},
+
         ])
   end
 end
