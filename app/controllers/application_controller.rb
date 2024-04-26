@@ -9,9 +9,25 @@ class ApplicationController < ActionController::API
 
   def authorize
     token = cookies.signed[:token]
+
+    unless token
+      render json: { errors: ["No token provided"] }, status: :unauthorized
+      return
+    end
+
     decoded_token = JsonWebToken.decode(token)
+
+    unless decoded_token
+      render json: { errors: ["Invalid token"] }, status: :unauthorized
+      return
+    end
+
+    
     current_user = User.find_by(id: decoded_token[:id])
-    render json: { errors: ["Not authorized"] }, status: :unauthorized unless current_user
+
+    unless current_user
+      render json: { errors: ["User not found"] }, status: :unauthorized
+    end
   end
 
   def render_unprocessable_entity_response(exception)

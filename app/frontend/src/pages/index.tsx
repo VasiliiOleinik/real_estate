@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { Metadata } from 'next'
 import RootLayout from '@/components/RootLayout'
 import Logo from '@/components/Logo'
+import { useIndex } from './useIndex'
 
 export const metadata: Metadata = {
   title: 'Real estate Home Page',
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 }
 
 export default function Index() {
+  const {} = useIndex()
   return (
     <RootLayout metadata={metadata}>
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
