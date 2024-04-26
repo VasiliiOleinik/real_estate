@@ -38,4 +38,8 @@ class ApplicationController < ActionController::API
   def render_not_found_response(exception)
     render json: { errors: ["Not found: #{exception.message}"] }, status: :not_found
   end
+
+  def not_found
+    render json: { error: 'Route not found' }, status: :not_found
+  end
 end
