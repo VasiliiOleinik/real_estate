@@ -9,7 +9,8 @@ class ApplicationController < ActionController::API
   private
 
   def authorize
-    token = cookies.signed[:token]
+    auth_header = request.headers['Authorization']
+    token = auth_header.split(' ').last if auth_header
 
     unless token
       render json: { errors: ["No token provided"] }, status: :unauthorized
