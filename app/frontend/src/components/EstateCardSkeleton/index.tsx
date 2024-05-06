@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function EstateSkeleton() {
+export default function EstateCardSkeleton() {
   return (
     <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-6 animate-pulse">
       <div className="bg-clip-border mt-4 mx-4 rounded-xl overflow-hidden text-gray-700 relative grid h-56 place-items-center bg-gray-300"></div>

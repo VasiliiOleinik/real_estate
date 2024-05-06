@@ -1,5 +1,5 @@
-import EstateSkeleton from '@/components/EstateSkeleton'
-import React from 'react';
+import EstateCardSkeleton from '@/components/EstateCardSkeleton'
+import React from 'react'
 
 export default function LoadingEstates() {
   const estates = Array.from({ length: 4 }, (_, i) => i)
@@ -7,8 +7,8 @@ export default function LoadingEstates() {
   return (
     <>
       {estates.map(el => (
-        <EstateSkeleton key={el}/>
+        <EstateCardSkeleton key={el} />
       ))}
     </>
-  );
-};
+  )
+}

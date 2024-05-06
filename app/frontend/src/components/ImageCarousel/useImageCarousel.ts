@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 
-export default function useImageCarousel(images: string[]) {
+export default function useImageCarousel({ images }: { images: string[] }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
 

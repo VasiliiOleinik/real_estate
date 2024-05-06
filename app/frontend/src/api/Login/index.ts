@@ -5,11 +5,8 @@ export async function login(credentials: { username: string; password: string })
   try {
     const { data } = await axios.post('/login', credentials)
 
-    setCookie('token', data.access_token)
+    return data
   } catch (error) {
-    console.log('errorerror', error)
-    console.log('login had an error', error)
-
     return error
   }
 }

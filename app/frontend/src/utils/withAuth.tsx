@@ -12,7 +12,7 @@ export function withAuth(PageComponent) {
       console.error(err)
     }
 
-    if (!token) {
+    if (!token || token === 'undefined') {
       return {
         redirect: {
           destination: '/login',

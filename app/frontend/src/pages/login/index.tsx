@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { login } from '@/api/Login'
 import { useMutation } from 'react-query'
-import { getCookie } from '@/utils/cookies'
+import { getCookie, setCookie } from '@/utils/cookies'
 // import Loading from '@/components/loading'
 
 const token = getCookie('token')
@@ -27,10 +27,18 @@ export default function Login() {
   }
 
   const mutation = useMutation({
-    mutationFn: login
-    // onSuccess: () => {
-    //   push('/')
-    // }
+    mutationFn: login,
+    onSuccess: data => {
+      console.log('success')
+      setCookie('token', data.access_token)
+      push('/')
+    },
+    onError: (error: any) => {
+      console.log('error', error)
+    },
+    onSettled: () => {
+      console.log('settled')
+    }
   })
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,11 +46,11 @@ export default function Login() {
     mutation.mutate(formData)
   }
 
-  // useEffect(() => {
-  //   if (token) {
-  //     push('/')
-  //   }
-  // }, [token])
+  useEffect(() => {
+    if (token) {
+      push('/')
+    }
+  }, [token])
 
   return (
     <section className="min-h-screen w-full flex justify-center items-center">
