@@ -13,14 +13,14 @@ class ApplicationController < ActionController::API
     token = auth_header.split(' ').last if auth_header
 
     unless token
-      render json: { errors: ["No token provided"] }, status: :unauthorized
+      render json: { message: "No token provided" }, status: :unauthorized
       return
     end
-
+    
     begin
       decoded_token = JsonWebToken.decode(token)
     rescue JWT::ExpiredSignature
-      render json: { errors: "Token has expired", status: :unauthorized }, status: :unauthorized
+      render json: { message: "Token has expired" }, status: :unauthorized
       return
     end
 
