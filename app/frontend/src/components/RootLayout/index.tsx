@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
+import Logo from '../Logo'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,9 +30,13 @@ export default function RootLayout({ children, metadata }: Readonly<RootLayoutPr
         <meta name="keywords" content="real_estate, home, house, flat" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className={inter.className}>
-        <header>{/* Add your header here */}</header>
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className={`min-h-screen ${inter.className}`}>
+        <header className="p-10">
+          <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+            <Logo />
+          </div>
+        </header>
+        <main className="flex flex-col items-center justify-between p-10">
           {children}
         </main>
         <footer>{/* Add your footer here */}</footer>

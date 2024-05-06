@@ -7,6 +7,8 @@ export const useHome = () => {
     refetchOnWindowFocus: false
   })
 
-  console.log('estates', estates)
-  return {}
+  return {
+    isLoading,
+    estates
+  }
 }

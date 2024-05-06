@@ -2,9 +2,9 @@ import axios from '@/utils/axios'
 
 export async function getRealEstates() {
   try {
-    const result = await axios.get('/estate')
+    const {data} = await axios.get('/estate')
 
-    console.log(result)
+    return data
   } catch (error) {
     console.log('error', error)
   }
