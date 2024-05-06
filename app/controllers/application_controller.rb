@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
     begin
       decoded_token = JsonWebToken.decode(token)
     rescue JWT::ExpiredSignature
-      render json: { errors: ["Token has expired"] }, status: :unauthorized
+      render json: { errors: "Token has expired", status: :unauthorized }, status: :unauthorized
       return
     end
 

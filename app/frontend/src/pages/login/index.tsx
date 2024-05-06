@@ -27,10 +27,10 @@ export default function Login() {
   }
 
   const mutation = useMutation({
-    mutationFn: login,
-    onSuccess: () => {
-      push('/')
-    }
+    mutationFn: login
+    // onSuccess: () => {
+    //   push('/')
+    // }
   })
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,11 +38,11 @@ export default function Login() {
     mutation.mutate(formData)
   }
 
-  useEffect(() => {
-    if (token) {
-      push('/')
-    }
-  }, [token])
+  // useEffect(() => {
+  //   if (token) {
+  //     push('/')
+  //   }
+  // }, [token])
 
   return (
     <section className="min-h-screen w-full flex justify-center items-center">

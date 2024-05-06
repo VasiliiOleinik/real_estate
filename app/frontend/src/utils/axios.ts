@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { getCookie } from './cookies'
+import { getCookie, removeCookie } from './cookies'
+import { STATUS_CODES } from '@/constants'
 
 const token = getCookie('token')
 const bearerToken = `Bearer ${token}`
@@ -22,5 +23,22 @@ axios.interceptors.request.use(
     return Promise.reject(error)
   }
 )
+
+// axios.interceptors.response.use(
+//   response => response,
+//   error => {
+//     const statusCode = error.response.status
+
+//     if (
+//       statusCode === STATUS_CODES.CLIENT_ERROR_UNAUTHORIZED ||
+//       statusCode === STATUS_CODES.CLIENT_ERROR_FORBIDDEN
+//     ) {
+//       removeCookie('token')
+//       window.location.href = `/login`
+//     }
+
+//     return Promise.reject(error)
+//   }
+// )
 
 export default axios
