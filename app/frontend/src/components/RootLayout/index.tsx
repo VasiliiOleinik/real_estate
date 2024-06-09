@@ -34,6 +34,14 @@ export default function RootLayout({ children, metadata }: Readonly<RootLayoutPr
         <header className="p-10 pb-0">
           <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
             <Logo />
+            <nav className="flex space-x-4">
+              <a href="/real-estates" className="hover:underline">
+                Real Estates
+              </a>
+              <a href="/create-real-estate" className="hover:underline">
+                Create Real Estate
+              </a>
+            </nav>
           </div>
         </header>
         <main className="flex flex-col items-center justify-between p-10">{children}</main>

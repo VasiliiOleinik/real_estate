@@ -49,3 +49,8 @@ end
 gem "bcrypt", "~> 3.1"
 
 gem "jwt", "~> 2.8"
+
+gem "mini_magick"
+gem 'aws-sdk-dynamodb'
+gem 'aws-sdk-rails'
+gem 'aws-sdk-s3'

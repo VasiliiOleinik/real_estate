@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       post '/signup', to: 'users#create'
       post '/login', to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
+      post 'image', to: 'images#create'
       resources :estate, only: [:index, :show, :create]
     end
   end

@@ -14,6 +14,9 @@ const config: Config = {
       },
       boxShadow: {
         dark: '0 4px 6px 0 #a855f7, 0 1px 3px 0 #6366f1'
+      },
+      colors: {
+        purple: '#a855f7'
       }
     }
   },

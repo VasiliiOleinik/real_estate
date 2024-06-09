@@ -20,3 +20,17 @@ export async function getRealEstateById({ queryKey }) {
     console.log('error', error)
   }
 }
+
+export async function uploadImageToS3({ file }) {
+  try {
+    const { data } = await axios.post('/image', file, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+
+    return data
+  } catch (error) {
+    console.log('error', error)
+  }
+}
