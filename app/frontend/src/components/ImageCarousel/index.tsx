@@ -7,7 +7,7 @@ export default function ImageCarousel({
   imageHeight = 'h-64'
 }: {
   images: string[]
-  imageHeight: string
+  imageHeight?: string
 }) {
   const {
     activeImageIndex,

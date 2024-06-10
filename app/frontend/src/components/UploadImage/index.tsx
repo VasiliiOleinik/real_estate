@@ -1,7 +1,7 @@
 import React from 'react'
 import Loading from '../Loading'
 
-const UploadImage = ({ isLoading, onInputChange }) => {
+const UploadImage = ({ isLoading, onInputChange }: any) => {
   return (
     <div className="max-w-md mx-auto rounded-lg md:max-w-xl">
       <div

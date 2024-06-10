@@ -10,7 +10,7 @@ export async function getRealEstates() {
   }
 }
 
-export async function getRealEstateById({ queryKey }) {
+export async function getRealEstateById({ queryKey }: any) {
   const [, id] = queryKey
   try {
     const { data } = await axios.get(`/estate/${id}`)
@@ -21,7 +21,7 @@ export async function getRealEstateById({ queryKey }) {
   }
 }
 
-export async function uploadImageToS3({ file }) {
+export async function uploadImageToS3({ file }: any) {
   try {
     const { data } = await axios.post('/image', file, {
       headers: {
@@ -35,7 +35,7 @@ export async function uploadImageToS3({ file }) {
   }
 }
 
-export async function deleteImageFromS3({ estate_id, file_name }) {
+export async function deleteImageFromS3({ estate_id, file_name }: any) {
   try {
     const { data } = await axios.post('/image/destroy', { estate_id, file_name })
 
@@ -45,7 +45,7 @@ export async function deleteImageFromS3({ estate_id, file_name }) {
   }
 }
 
-export async function createEstate(formData) {
+export async function createEstate(formData: any) {
   try {
     const { data } = await axios.post(`/estate`, formData)
 

@@ -5,11 +5,11 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
 import jwt from 'jsonwebtoken'
 
-export const useCreateRealEstate = () => {
+const useCreateRealEstate = () => {
   const [images, setImage] = useState<File[]>([])
   const [estateID, setEstateID] = useState('')
 
-  const user = jwt.decode(getCookie('token'))
+  const user = jwt.decode(getCookie('token')) as any
 
   const { control, handleSubmit, setValue, watch } = useForm()
   const { fields, append, remove } = useFieldArray({
@@ -48,7 +48,6 @@ export const useCreateRealEstate = () => {
   }
 
   function onSubmit(data: any) {
-    console.log(data)
     const newData = {
       ...data,
       listing_status: {
@@ -56,7 +55,7 @@ export const useCreateRealEstate = () => {
         featured: false,
         verified: false
       },
-      media_contains: fields.map(field => field.url),
+      media_contains: fields.map((field: any) => field.url),
       estate_id: estateID,
       author: user?.username
     }
@@ -77,3 +76,5 @@ export const useCreateRealEstate = () => {
     remove
   }
 }
+
+export default useCreateRealEstate

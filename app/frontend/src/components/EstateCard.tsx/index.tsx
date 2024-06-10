@@ -11,7 +11,7 @@ export default function EstateCard({
   estate_status,
   property_type,
   id
-}) {
+}: any) {
   const router = useRouter()
   return (
     <div

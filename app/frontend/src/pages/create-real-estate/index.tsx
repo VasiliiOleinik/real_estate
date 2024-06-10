@@ -3,12 +3,12 @@ import { withAuth } from '@/utils/withAuth'
 import { Metadata } from 'next'
 import React from 'react'
 
-import { useCreateRealEstate } from './useCreateRealEstate'
+import useCreateRealEstate from '@/hooks/useCreateRealEstate'
 import UploadImage from '@/components/UploadImage'
 import ImageCard from './ImageCard'
 import { Controller } from 'react-hook-form'
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Create new Real Estate',
   description: 'The official Next.js Course Dashboard, built with App Router.'
 }
@@ -542,7 +542,7 @@ function CreateRealEstate() {
         </button>
       </form>
       <div className="grid grid-cols-5 gap-4">
-        {fields.map(({ url, id }) => (
+        {fields.map(({ url, id }: any) => (
           <ImageCard key={id} image={url} estateID={estateID} removeImage={remove} removeId={id} />
         ))}
         <UploadImage onInputChange={onImageInputChange} isLoading={isLoading} />

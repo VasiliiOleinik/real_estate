@@ -1,9 +1,9 @@
 import { parseCookies } from 'nookies'
 
-export function withAuth(PageComponent) {
-  const WithAuth = props => <PageComponent {...props} />
+export function withAuth(PageComponent: any) {
+  const WithAuth = (props: any) => <PageComponent {...props} />
 
-  const getServerSideProps = async context => {
+  const getServerSideProps = async (context: any) => {
     let token
     try {
       const cookies = parseCookies(context)

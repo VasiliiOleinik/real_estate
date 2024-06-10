@@ -1,13 +1,12 @@
 import RootLayout from '@/components/RootLayout'
 import { withAuth } from '@/utils/withAuth'
-import { Metadata } from 'next'
 import React from 'react'
-import { useRealEstates } from './useRealEstates'
+import useRealEstates from '@/hooks/useRealEstates'
 import LoadingEstates from './LoadingEstates'
 import NoData from '@/components/NoData'
 import EstateCard from '@/components/EstateCard.tsx'
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Real estate Home Page',
   description: 'The official Next.js Course Dashboard, built with App Router.'
 }
@@ -29,7 +28,7 @@ function RealEstates() {
 
       <div className="grid grid-cols-4 gap-4">
         {!isLoading && estates.length
-          ? estates.map((estate, id) => <EstateCard {...estate} key={id} />)
+          ? estates.map((estate: any, id: any) => <EstateCard {...estate} key={id} />)
           : null}
       </div>
     </RootLayout>

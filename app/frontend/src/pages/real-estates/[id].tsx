@@ -1,6 +1,5 @@
 import RootLayout from '@/components/RootLayout'
-import { Metadata } from 'next'
-import { useEstatePage } from './useEstatePage'
+import useEstatePage from '@/hooks/useEstatePage'
 import ImageCarousel from '@/components/ImageCarousel'
 import { useRouter } from 'next/router'
 
@@ -8,7 +7,7 @@ const EstatePage = () => {
   const router = useRouter()
   const { estate, isLoading } = useEstatePage()
 
-  const metadata: Metadata = {
+  const metadata = {
     title: estate?.title ? estate.title : 'Real estate page',
     description: estate?.description ? estate.description : 'Real estate page'
   }

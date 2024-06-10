@@ -1,7 +1,8 @@
 import { getRealEstates } from '@/api/Estates'
 import { useQuery } from 'react-query'
+import React from 'react'
 
-export const useRealEstates = () => {
+const useRealEstates = () => {
   const { data: estates = [], isLoading } = useQuery('estates', getRealEstates, {
     enabled: true,
     refetchOnWindowFocus: false
@@ -12,3 +13,4 @@ export const useRealEstates = () => {
     estates
   }
 }
+export default useRealEstates

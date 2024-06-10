@@ -1,7 +1,7 @@
 import React from 'react'
-import { useImageCard } from './useImageCard'
+import useImageCard from '@/hooks/useImageCard'
 
-const ImageCard = ({ image, estateID, removeImage, removeId }) => {
+const ImageCard = ({ image, estateID, removeImage, removeId }: any) => {
   const { handleRemoveImage } = useImageCard({ estateID, removeImage, removeId })
 
   return (

@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import RootLayout from '@/components/RootLayout'
 import { withAuth } from '@/utils/withAuth'
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Real estate Home Page',
   description: 'The official Next.js Course Dashboard, built with App Router.'
 }

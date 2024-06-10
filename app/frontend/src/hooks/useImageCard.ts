@@ -1,11 +1,10 @@
 import { deleteImageFromS3 } from '@/api/Estates'
-import React from 'react'
 import { useMutation } from 'react-query'
 
-export const useImageCard = ({ estateID, removeImage, removeId }) => {
+const useImageCard = ({ estateID, removeImage, removeId }: any) => {
   const { mutate: deleteImage } = useMutation('image', deleteImageFromS3)
 
-  function handleRemoveImage(url) {
+  function handleRemoveImage(url: any) {
     const imageName = url.split('/').at(-1)
 
     deleteImage({ estate_id: estateID, file_name: imageName })
@@ -16,3 +15,4 @@ export const useImageCard = ({ estateID, removeImage, removeId }) => {
     handleRemoveImage
   }
 }
+export default useImageCard
