@@ -1,11 +1,15 @@
-import { uploadImageToS3 } from '@/api/Estates'
-import React, { useEffect, useRef, useState } from 'react'
+import { createEstate, uploadImageToS3 } from '@/api/Estates'
+import { getCookie } from '@/utils/cookies'
+import React, { useEffect, useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
+import jwt from 'jsonwebtoken'
 
 export const useCreateRealEstate = () => {
   const [images, setImage] = useState<File[]>([])
   const [estateID, setEstateID] = useState('')
+
+  const user = jwt.decode(getCookie('token'))
 
   const { control, handleSubmit, setValue, watch } = useForm()
   const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
@@ -18,6 +22,8 @@ export const useCreateRealEstate = () => {
       append({ url: data })
     }
   })
+
+  const { mutate: createEstateMutation } = useMutation('estates', createEstate)
 
   function onImageInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const image = e.target.files
@@ -33,11 +39,40 @@ export const useCreateRealEstate = () => {
     setEstateID(crypto.randomUUID().split('-')[0])
   }, [])
 
-  console.log('watch', watch())
+  function onInfrastructureChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setValue('infrastructure', { ...watch('infrastructure'), [e.target.name]: e.target.checked })
+  }
+
+  function onExtraChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setValue('extra', { ...watch('extra'), [e.target.name]: e.target.value })
+  }
+
+  function onSubmit(data: any) {
+    console.log(data)
+    const newData = {
+      ...data,
+      listing_status: {
+        published: true,
+        featured: false,
+        verified: false
+      },
+      media_contains: fields.map(field => field.url),
+      estate_id: estateID,
+      author: user?.username
+    }
+
+    createEstateMutation(newData)
+  }
+
   return {
     onImageInputChange,
     isLoading,
     fields,
-    estateID
+    estateID,
+    control,
+    onInfrastructureChange,
+    onExtraChange,
+    handleSubmit,
+    onSubmit
   }
 }

@@ -34,3 +34,13 @@ export async function uploadImageToS3({ file }) {
     console.log('error', error)
   }
 }
+
+export async function createEstate(formData) {
+  try {
+    const { data } = await axios.post(`/estate`, formData)
+
+    return data
+  } catch (error) {
+    console.log('error', error)
+  }
+}
