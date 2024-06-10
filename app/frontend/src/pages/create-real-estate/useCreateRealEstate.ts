@@ -12,7 +12,7 @@ export const useCreateRealEstate = () => {
   const user = jwt.decode(getCookie('token'))
 
   const { control, handleSubmit, setValue, watch } = useForm()
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: 'media_contains'
   })
@@ -73,6 +73,7 @@ export const useCreateRealEstate = () => {
     onInfrastructureChange,
     onExtraChange,
     handleSubmit,
-    onSubmit
+    onSubmit,
+    remove
   }
 }

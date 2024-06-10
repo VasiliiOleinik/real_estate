@@ -14,6 +14,11 @@ class UploadToAwsS3
       obj.put(body: body, acl: 'public-read')
     end
 
+    def delete(estate_id, file_name)
+      obj = s3_obj("#{estate_id}/#{file_name}")
+      obj.delete
+    end
+
     private
 
     def s3_obj(name)

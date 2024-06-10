@@ -1,6 +1,9 @@
 import React from 'react'
+import { useImageCard } from './useImageCard'
 
-const ImageCard = ({ image }) => {
+const ImageCard = ({ image, estateID, removeImage, removeId }) => {
+  const { handleRemoveImage } = useImageCard({ estateID, removeImage, removeId })
+
   return (
     <div className="max-w-md mx-auto rounded-lg md:max-w-xl">
       <div
@@ -20,6 +23,9 @@ const ImageCard = ({ image }) => {
       >
         <img src={image} alt="image" className="w-full h-full" />
       </div>
+      <button className="" onClick={() => handleRemoveImage(image)}>
+        Delete
+      </button>
     </div>
   )
 }

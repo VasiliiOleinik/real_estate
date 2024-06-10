@@ -35,6 +35,16 @@ export async function uploadImageToS3({ file }) {
   }
 }
 
+export async function deleteImageFromS3({ estate_id, file_name }) {
+  try {
+    const { data } = await axios.post('/image/destroy', { estate_id, file_name })
+
+    return data
+  } catch (error) {
+    console.log('error', error)
+  }
+}
+
 export async function createEstate(formData) {
   try {
     const { data } = await axios.post(`/estate`, formData)

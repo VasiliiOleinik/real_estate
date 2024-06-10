@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post '/login', to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
       post 'image', to: 'images#create'
+      post 'image/destroy', to: 'images#destroy'
       resources :estate, only: [:index, :show, :create]
     end
   end

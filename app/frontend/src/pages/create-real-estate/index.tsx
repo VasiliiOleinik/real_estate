@@ -25,7 +25,8 @@ function CreateRealEstate() {
     onInfrastructureChange,
     onExtraChange,
     handleSubmit,
-    onSubmit
+    onSubmit,
+    remove
   } = useCreateRealEstate()
 
   return (
@@ -542,7 +543,7 @@ function CreateRealEstate() {
       </form>
       <div className="grid grid-cols-5 gap-4">
         {fields.map(({ url, id }) => (
-          <ImageCard key={id} image={url} />
+          <ImageCard key={id} image={url} estateID={estateID} removeImage={remove} removeId={id} />
         ))}
         <UploadImage onInputChange={onImageInputChange} isLoading={isLoading} />
       </div>

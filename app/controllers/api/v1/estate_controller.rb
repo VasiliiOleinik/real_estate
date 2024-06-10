@@ -47,11 +47,11 @@ class Api::V1::EstateController < ApplicationController
           :description,
           :availability,
           :author,
+          :estate_id
           infrastructure: {},
           extra: {},
           media_contains: [],
           listing_status: {},
-
         ])
   end
 end
