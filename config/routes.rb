@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   match '*path', to: 'application#not_found', via: :all
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "home#index"
 end
