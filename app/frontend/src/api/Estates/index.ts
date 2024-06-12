@@ -4,7 +4,7 @@ export async function getRealEstates() {
   try {
     const { data } = await axios.get('/estate')
 
-    return data
+    return data.estates
   } catch (error) {
     console.log('error', error)
   }

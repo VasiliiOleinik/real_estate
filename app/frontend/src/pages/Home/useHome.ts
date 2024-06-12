@@ -1,15 +1,14 @@
-import { getRealEstates } from '../../../frontend/src/api/Estates'
 import { useQuery } from 'react-query'
-import React from 'react'
+import { getRealEstates } from '../../api/Estates'
 
-const useRealEstates = () => {
+export const useHome = () => {
   const { data: estates = [], isLoading } = useQuery(
     'estates',
     getRealEstates,
     {
       enabled: true,
       refetchOnWindowFocus: false,
-    },
+    }
   )
 
   return {
@@ -17,4 +16,3 @@ const useRealEstates = () => {
     estates,
   }
 }
-export default useRealEstates

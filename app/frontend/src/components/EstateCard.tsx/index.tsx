@@ -1,6 +1,5 @@
-import React from 'react'
-import ImageCarousel from '../ImageCarousel'
-import { useRouter } from 'next/router'
+import { Button, Card, ListGroup } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 export default function EstateCard({
   media_contains,
@@ -10,24 +9,33 @@ export default function EstateCard({
   price,
   estate_status,
   property_type,
-  id
+  id,
 }: any) {
-  const router = useRouter()
+  const navigate = useNavigate()
+
   return (
-    <div
-      onClick={() => router.push(`/real-estates/${id}`)}
-      className="relative cursor-pointer min-w-[270px] flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-6 p-2 dark:shadow-dark"
-    >
-      <ImageCarousel images={media_contains} />
-      <div className="p-2">
-        <h2 className="text-2xl font-semibold">{title}</h2>
-        <p className="text-lg text-gray-600">Type: {property_type}</p>
-        <p className="text-lg text-gray-600">Status: {estate_status}</p>
-        <p className="text-lg text-gray-600">Price: {price}</p>
-        <p className="text-lg text-gray-600">
+    <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={media_contains[0]} />
+      <Card.Body>
+        <Card.Title>{title}</Card.Title>
+      </Card.Body>
+      <ListGroup className="list-group-flush">
+        <ListGroup.Item>Type: {property_type}</ListGroup.Item>
+        <ListGroup.Item>Status: {estate_status}</ListGroup.Item>
+        <ListGroup.Item>Price: {price}</ListGroup.Item>
+        <ListGroup.Item>
           Location: {country}, {region}
-        </p>
-      </div>
-    </div>
+        </ListGroup.Item>
+      </ListGroup>
+      <Card.Body>
+        <Button
+          variant="primary"
+          type="button"
+          onClick={() => navigate(`/${id}`)}
+        >
+          Open
+        </Button>
+      </Card.Body>
+    </Card>
   )
 }

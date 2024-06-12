@@ -25,8 +25,10 @@ export default function Login() {
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      setCookie('token', data.access_token)
-      navigate('/')
+      if (data.access_token) {
+        setCookie('token', data.access_token)
+        navigate('/')
+      }
     },
   })
 

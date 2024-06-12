@@ -3,9 +3,15 @@ import React from 'react'
 const Image = React.memo(({ url, isActive }: any) => {
   return (
     <div
-      className={`absolute w-full h-full transition-opacity duration-1000 ease-in-out ${isActive ? 'opacity-100' : 'opacity-0'}`}
+      className={`position-absolute w-100 ${
+        isActive ? 'opacity-100' : 'opacity-0'
+      }`}
     >
-      <img src={url} alt="Carousel" className="w-full h-full object-cover rounded-xl" />
+      <img
+        src={url}
+        alt="Carousel"
+        style={{ height: '500px', width: '100%', objectFit: 'cover' }}
+      />
     </div>
   )
 })

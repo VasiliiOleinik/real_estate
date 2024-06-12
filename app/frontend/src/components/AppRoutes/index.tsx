@@ -3,6 +3,8 @@ import { routes } from './routes'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getCookie } from '../../utils/cookies'
+import Login from '../../pages/Login'
+import Navigation from '../Navigation'
 
 export const AppRoutes = () => {
   const navigate = useNavigate()
@@ -17,7 +19,21 @@ export const AppRoutes = () => {
   return (
     <Routes>
       {routes.map(({ path, component: Component, exact }) => (
-        <Route key={path} path={path} exact={exact} element={<Component />} />
+        <Route
+          key={path}
+          path={path}
+          exact={exact}
+          element={
+            !token ? (
+              <Login />
+            ) : (
+              <div>
+                <Navigation />
+                <Component />
+              </div>
+            )
+          }
+        />
       ))}
     </Routes>
   )
