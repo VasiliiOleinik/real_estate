@@ -16,11 +16,22 @@ class Api::V1::EstateController < ApplicationController
   end
 
   def show
-    estate = Estate.find(params[:id])
-    if estate
+    estate = Estate.find_by_id(params[:id])
+    
+    if estate.present?
       render json: estate, status: :ok
     else
-      render json: {error: 'Estate not found'}, status: :not_found
+      render json: {error: 'Estate not found'}, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    estate = Estate.delete(params[:id])
+    
+    if estate.present?
+      render json: { result: 'Successfully deleted!' }, status: :ok
+    else
+      render json: { result: 'Deletion failed!' }, status: :unprocessable_entity
     end
   end
 

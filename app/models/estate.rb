@@ -21,7 +21,7 @@ class Estate < ApplicationRecord
     def create(attrs)
       required_attrs = %w(title property_type estate_status country region price media_contains)
       missing_attrs = required_attrs.reject { |attr| attrs.with_indifferent_access[attr].present? }
-
+      
       if missing_attrs.any?
         log_error("Validation failed: Missing #{missing_attrs.join(', ')}")
         return nil
@@ -39,6 +39,14 @@ class Estate < ApplicationRecord
         log_error("Unable to create Estate: #{e.message}")
         nil
       end
+    end
+
+    def delete(id)
+      response = dynamo_client.delete_item(table_name: TABLE_NAME, key: { 'id' => id })
+      response.successful?
+    rescue Aws::DynamoDB::Errors::ServiceError => e
+      log_error("Error deleting estate #{e.message}")
+      false
     end
 
     def log_error(message)
