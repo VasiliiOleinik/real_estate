@@ -9,10 +9,10 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 export default function Login() {
   const navigate = useNavigate()
   const [formData, setFormData] = useState<{
-    username: string
+    email: string
     password: string
   }>({
-    username: '',
+    email: '',
     password: '',
   })
 
@@ -43,11 +43,11 @@ export default function Login() {
         <Col lg="6" className="bg-light p-3 rounded-3">
           <Form onSubmit={onSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Username</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Username"
-                name="username"
+                type="email"
+                placeholder="Email"
+                name="email"
                 onChange={handleChange}
               />
             </Form.Group>
