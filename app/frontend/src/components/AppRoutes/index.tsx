@@ -18,11 +18,10 @@ export const AppRoutes = () => {
 
   return (
     <Routes>
-      {routes.map(({ path, component: Component, exact }) => (
+      {routes.map(({ path, component: Component }) => (
         <Route
           key={path}
           path={path}
-          exact={exact}
           element={
             !token ? (
               <Login />

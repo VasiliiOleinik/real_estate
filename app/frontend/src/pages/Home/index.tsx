@@ -13,8 +13,8 @@ export const Home = () => {
         <Spinner animation="grow" />
       ) : (
         <Row>
-          {estates?.map((estate, id) => (
-            <Col sm={2} key={id}>
+          {estates?.map((estate: any, id: any) => (
+            <Col sm={3} key={id} className="mb-4">
               <EstateCard {...estate} />
             </Col>
           ))}

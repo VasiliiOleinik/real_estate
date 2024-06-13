@@ -90,7 +90,7 @@ export default function ImageCarousel({
           transform: 'translateX(-50%)',
         }}
       >
-        {images?.map((image, index) => (
+        {images?.map((_, index) => (
           <div
             key={index}
             style={{

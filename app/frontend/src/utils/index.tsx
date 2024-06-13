@@ -1,4 +1,4 @@
 import { Route } from 'react-router-dom'
 
-export const routesMapper = (routes) =>
-  routes.map((route, i) => <Route key={i} {...route} />)
+export const routesMapper = (routes: any) =>
+  routes.map((route: any, i: any) => <Route key={i} {...route} />)

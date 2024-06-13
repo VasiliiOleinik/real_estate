@@ -1,4 +1,3 @@
-import React from 'react'
 import { useQuery } from 'react-query'
 import { getRealEstateById } from '../../api/Estates'
 import { useParams } from 'react-router-dom'
