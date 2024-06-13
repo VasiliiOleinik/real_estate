@@ -1,11 +1,16 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_current_user, only: :show
   skip_before_action :authorize, only: :create
-
+  
   def create
-    user = User.create!(user_params)
-    session[:user_id] = user.id
-    render json: user.as_json(except: :password_digest), status: :created
+    user = User.create(user_params.to_h)
+
+    if user.present?
+      session[:user_id] = user[:id]
+      render json: user.as_json(except: :password), status: :created
+    else
+      render json: { error: 'User not created' }, status: :unprocessable_entity
+    end
   end
 
   def show

@@ -32,7 +32,7 @@ class ApplicationController < ActionController::API
     end
 
     
-    current_user = User.find_by(id: decoded_token[:id])
+    current_user = User.find_by('id', id: decoded_token[:id])
 
     unless current_user
       render json: { errors: ["User not found"] }, status: :unauthorized

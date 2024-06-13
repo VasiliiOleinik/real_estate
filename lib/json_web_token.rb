@@ -6,10 +6,17 @@ class JsonWebToken
   class << self
     def encode(payload, exp = 2.hours.from_now)
       user = payload[:user]
-      user_id = user.id
+
+      user_id = user["id"]
       return '' if user_id.blank?
 
-      user = { id: user.id, email: user.email, username: user.username, first_name: user.first_name, last_name: user.last_name, exp: exp.to_i }
+      user_payload = {
+        id: user['id'],
+        email: user['email'],
+        first_name: user['first_name'],
+        last_name: user['last_name'],
+        exp: exp.to_i
+      }
       JWT.encode(user, "SECRET_TOKEN", 'HS256', typ: 'JWT')
     end
 
