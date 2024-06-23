@@ -2,7 +2,7 @@ class Api::V1::SessionsController < ApplicationController
   skip_before_action :authorize, only: :create
 
   def create
-    user = User.find_by('email', session_params[:email])
+    user = User.find_by_email(session_params[:email])
 
     if user.present? && valid_password?(user["password"], session_params[:password])
         token = JsonWebToken.encode(user: user, exp: 8.hours.from_now.to_i)

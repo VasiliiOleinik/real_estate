@@ -1,9 +1,9 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   include ActionController::Cookies
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-
+  skip_before_action :verify_authenticity_token
   before_action :authorize
 
   private
@@ -32,7 +32,8 @@ class ApplicationController < ActionController::API
     end
 
     
-    current_user = User.find_by('id', id: decoded_token[:id])
+    current_user = User.find_by_email(decoded_token[:email])
+    puts current_user
 
     unless current_user
       render json: { errors: ["User not found"] }, status: :unauthorized

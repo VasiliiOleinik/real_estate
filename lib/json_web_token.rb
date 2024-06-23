@@ -21,8 +21,13 @@ class JsonWebToken
     end
 
     def decode(token)
-      body = JWT.decode(token, "SECRET_TOKEN")[0]
-      ActiveSupport::HashWithIndifferentAccess.new(body)
+      begin
+        body = JWT.decode(token, "SECRET_TOKEN")[0]
+        ActiveSupport::HashWithIndifferentAccess.new(body)
+      rescue JWT::DecodeError => e
+        # Handle the error appropriately. For example, you could return nil or raise a custom error
+        nil # or raise CustomError.new("Invalid token format")
+      end
     end
 
     def current_user(user)

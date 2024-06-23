@@ -3,8 +3,8 @@ class User < ApplicationRecord
   TABLE_NAME = "users".freeze
 
   class << self
-    def find_by(key, value)
-      response = dynamo_client.get_item(table_name: TABLE_NAME, key: { key => value })
+    def find_by_email(value)
+      response = dynamo_client.get_item(table_name: TABLE_NAME, key: { 'email' => value })
       response.item
       rescue Aws::DynamoDB::Errors::ServiceError => e
         log_error("Error finding user: #{e.message}")
@@ -12,7 +12,7 @@ class User < ApplicationRecord
     end
 
     def create(attrs)
-      is_user_exists = find_by('email', attrs[:email])
+      is_user_exists = find_by_email(attrs[:email])
 
       if is_user_exists.present?
         return { success: false, errors: "User already exists with email: #{attrs[:email]}" }
