@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { login } from '../../api/login'
 import { useMutation } from 'react-query'
 import { getCookie, setCookie } from '../../utils/cookies'
@@ -39,6 +39,10 @@ export default function Login() {
     e.preventDefault()
     mutation.mutate(formData)
   }
+
+  useEffect(() => {
+    if (getCookie('token')) navigate('/')
+  }, [getCookie('token')])
 
   return (
     <Container className="p-5">
