@@ -2,12 +2,11 @@ import axios from 'axios'
 import { getCookie, removeCookie } from './cookies'
 import { STATUS_CODES } from '../constants'
 
-const token = getCookie('token')
-
 axios.defaults.baseURL = import.meta.env.VITE_PUBLIC_BACKEND_URL
 
 axios.interceptors.request.use(
   (config) => {
+    const token = getCookie('token')
     if (!token && token === 'undefined') {
       window.location.href = `/login`
       return Promise.reject(new Error('No token found'))

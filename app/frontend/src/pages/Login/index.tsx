@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { login } from '../../api/login'
 import { useMutation } from 'react-query'
-import { setCookie } from '../../utils/cookies'
+import { getCookie, setCookie } from '../../utils/cookies'
 import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/esm/Form'
 import { Button, Col, Container, Row } from 'react-bootstrap'
@@ -27,7 +27,10 @@ export default function Login() {
     onSuccess: (data) => {
       if (data.access_token) {
         setCookie('token', data.access_token)
-        navigate('/')
+
+        if (getCookie('token')) {
+          navigate('/')
+        }
       }
     },
   })
