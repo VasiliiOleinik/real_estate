@@ -23,7 +23,7 @@ export async function getRealEstateById({ queryKey }: any) {
 
 export async function uploadImageToS3({ file }: any) {
   try {
-    const { data } = await axios.post('/image', file, {
+    const { data } = await axios.post('/images', file, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

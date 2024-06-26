@@ -1,6 +1,8 @@
+import CreateRealEstate from '../../pages/CreateRealEstate'
 import EstatePage from '../../pages/EstatePage'
 import { Home } from '../../pages/Home'
 import Login from '../../pages/Login'
+import UserPage from '../../pages/UserPage'
 
 export const routes = [
   {
@@ -16,6 +18,16 @@ export const routes = [
   {
     path: '/:id',
     component: EstatePage,
+    exact: true,
+  },
+  {
+    path: '/create-estate',
+    component: CreateRealEstate,
+    exact: true,
+  },
+  {
+    path: '/user',
+    component: UserPage,
     exact: true,
   },
 ]

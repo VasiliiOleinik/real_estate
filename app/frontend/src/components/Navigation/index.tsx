@@ -7,7 +7,6 @@ import { logout } from '../../api/logout'
 
 const Navigation = () => {
   const user = jwtDecode(getCookie('token'))
-  console.log(user)
   const { first_name, last_name, avatar } = user
   function getClassNames(isActive: boolean) {
     return isActive ? 'nav-link active' : 'nav-link'
@@ -45,9 +44,12 @@ const Navigation = () => {
 
         <div className="d-flex align-items-center">
           <Image src={avatar} roundedCircle width={30} height={30} />
-          <Badge bg="warning" text="dark" className="ms-2">
-            {first_name} {last_name}
-          </Badge>
+          <NavLink to="/user">
+            <Badge bg="warning" text="dark" className="ms-2">
+              {first_name} {last_name}
+            </Badge>
+          </NavLink>
+
           <Button variant="outline-danger" className="ms-2" onClick={logOut}>
             Logout
           </Button>

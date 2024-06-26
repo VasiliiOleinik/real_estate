@@ -1,4 +1,4 @@
-import { deleteImageFromS3 } from '../../../frontend/src/api/Estates'
+import { deleteImageFromS3 } from '../../api/Estates'
 import { useMutation } from 'react-query'
 
 const useImageCard = ({ estateID, removeImage, removeId }: any) => {
