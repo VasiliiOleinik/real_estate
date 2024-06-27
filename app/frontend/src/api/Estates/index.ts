@@ -21,6 +21,16 @@ export async function getRealEstateById({ queryKey }: any) {
   }
 }
 
+export async function deleteRealEstateById(id) {
+  try {
+    const { data } = await axios.delete(`/estate/${id}`)
+
+    return data
+  } catch (error) {
+    console.log('error', error)
+  }
+}
+
 export async function uploadImageToS3({ file }: any) {
   try {
     const { data } = await axios.post('/images', file, {

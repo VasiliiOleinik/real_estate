@@ -87,6 +87,12 @@ development:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
+test:
+  adapter: nulldb
+  database: dummy
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
 production:
   adapter: nulldb
   database: dummy

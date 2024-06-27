@@ -4,8 +4,10 @@ import { jwtDecode } from 'jwt-decode'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
 import { createEstate, uploadImageToS3 } from '../../api/Estates'
+import { useNavigate } from 'react-router-dom'
 
 export const userCreateEstate = () => {
+  const navigate = useNavigate()
   const [images, setImage] = useState<File[]>([])
   const [estateID, setEstateID] = useState('')
 
@@ -60,7 +62,7 @@ export const userCreateEstate = () => {
       },
       media_contains: fields.map((field: any) => field.url),
       estate_id: estateID,
-      author: user?.username,
+      author: user?.id,
     }
 
     createEstateMutation(newData)

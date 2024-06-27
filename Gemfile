@@ -56,3 +56,10 @@ gem 'aws-sdk-rails'
 gem 'aws-sdk-s3'
 gem 'activerecord-nulldb-adapter', require: 'nulldb/rails'
 gem 'sqlite3', '~> 1.4'
+gem 'factory_bot_rails'
+gem 'faker'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'rswag'
+end

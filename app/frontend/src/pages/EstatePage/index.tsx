@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEstatePage } from './useEstatePage'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -14,8 +15,7 @@ import ImageCarousel from '../../components/ImageCarousel'
 
 const EstatePage = () => {
   const navigate = useNavigate()
-  const { estate, isLoading } = useEstatePage()
-  console.log('estate', estate)
+  const { estate, isLoading, showDeleteBtn, deleteEstate } = useEstatePage()
 
   return isLoading ? (
     <Spinner animation="grow" />
@@ -29,6 +29,16 @@ const EstatePage = () => {
           <Button type="button" variant="primary" onClick={() => navigate(-1)}>
             Go Back
           </Button>
+          {showDeleteBtn && (
+            <Button
+              type="button"
+              variant="danger"
+              className="ms-2"
+              onClick={() => deleteEstate.mutate(estate.id)}
+            >
+              Delete
+            </Button>
+          )}
         </Col>
       </Row>
       <div style={{ width: '100%', height: '500px' }}>

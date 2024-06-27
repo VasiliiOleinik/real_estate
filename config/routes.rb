@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+ # Mount Rswag engines for API documentation
+ mount Rswag::Ui::Engine => '/api-docs'
+ mount Rswag::Api::Engine => '/api-docs'
+
   namespace :api do
     namespace :v1 do
-      get 'bookmarks/index'
-      get 'bookmarks/show'
       get '/user', to: 'users#show'
       post '/signup', to: 'users#create'
       post '/login', to: 'sessions#create'
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   
       resources :images, only: %i(create destroy)
       resources :estate, only: %i(index show create destroy)
+      resources :bookmarks, only: %i(index show)
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

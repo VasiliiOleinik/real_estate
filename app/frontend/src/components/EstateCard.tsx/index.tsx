@@ -1,3 +1,4 @@
+import React from 'react'
 import { Button, Card, ListGroup } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
@@ -15,7 +16,12 @@ export default function EstateCard({
 
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={media_contains[0]} />
+      <Card.Img
+        variant="top"
+        src={media_contains[0]}
+        height={200}
+        style={{ objectFit: 'cover' }}
+      />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
       </Card.Body>
